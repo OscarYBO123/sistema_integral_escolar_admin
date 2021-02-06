@@ -9,4 +9,6 @@ public interface IAdministradorDAO {
 	boolean registroAlumno(BeanAlumno beanAlumno);
 	
 	BeanAlumno obtenerAlumno(BeanAlumno beanAlumno);
+	
+	List<BeanAlumno> obtenerAlumnos(BeanAlumno beanAlumno);
 }

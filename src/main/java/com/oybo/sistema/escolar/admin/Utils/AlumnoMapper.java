@@ -21,12 +21,14 @@ public class AlumnoMapper implements RowMapper<BeanAlumno>{
 		beanAlumno.setFecNacimiento(rs.getString("FECNACIMIENTO"));
 		beanAlumno.setTelefono(rs.getString("TELEFONO"));
 		beanAlumno.setGrado(rs.getInt("GRADO"));
+		beanAlumno.setEstatus(rs.getBoolean("ESTATUS"));
 		
 		BeanCarrera beanCarrera = new BeanCarrera();
+		beanCarrera.setIdCarrera(rs.getInt("IDCARRERA"));
 		beanCarrera.setNombreCarrera(rs.getString("NOMBRECARRERA"));
 		
 		beanAlumno.setBeanCarrera(beanCarrera);
-		beanAlumno.setEstatus(rs.getBoolean("ESTATUS"));
+		
 		
 		return beanAlumno;
 	}

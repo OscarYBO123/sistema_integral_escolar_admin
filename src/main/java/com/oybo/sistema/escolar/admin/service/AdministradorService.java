@@ -36,4 +36,13 @@ public class AdministradorService implements IAdministradorService{
 		return alumno;
 	}
 
+	@Override
+	public List<BeanAlumno> obtenerAlumnos(BeanAlumno beanAlumno) {
+		List<BeanAlumno> listaAlumnos = new ArrayList<>();
+		
+		listaAlumnos = adminDAO.obtenerAlumnos(beanAlumno);
+		
+		return listaAlumnos;
+	}
+
 }

@@ -45,6 +45,25 @@ public class AdministradorController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/consultaAlumnos", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<BeanRespuesta<List<BeanAlumno>>> obtenerAlumnos(BeanAlumno beanAlumno){
+		BeanRespuesta<List<BeanAlumno>> response = new BeanRespuesta<>();
+		
+		List<BeanAlumno> listaAlumnos = adminService.obtenerAlumnos(beanAlumno);
+		
+		if(listaAlumnos.size() >= 1) {
+			response.setResponse(listaAlumnos);
+			response.setOk(true);
+			response.setResponseCode("RESPUESTA_EXITOSA");
+		}else {
+			response.setResponse(listaAlumnos);
+			response.setOk(false);
+			response.setResponseCode("RESPUESTA_ERRONEA");
+		}
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/consultaAlumno", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<BeanRespuesta<BeanAlumno>> obtenerAlumno(BeanAlumno beanAlumno){
 		BeanRespuesta<BeanAlumno> response = new BeanRespuesta<>();
@@ -56,11 +75,11 @@ public class AdministradorController {
 		if(alumno != null) {
 			response.setResponse(alumno);
 			response.setOk(true);
-			response.setResponseCode("RESPUESTA EXITOSA");	
+			response.setResponseCode("RESPUESTA_EXITOSA");	
 		}else {
 			response.setResponse(null);
 			response.setOk(false);
-			response.setResponseCode("RESPUESTA EXITOSA");
+			response.setResponseCode("RESPUESTA_ERRONEA");
 		}
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);

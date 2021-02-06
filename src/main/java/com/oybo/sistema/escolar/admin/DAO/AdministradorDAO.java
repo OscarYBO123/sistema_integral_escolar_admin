@@ -21,7 +21,9 @@ public class AdministradorDAO implements IAdministradorDAO {
 
 	private static final String QUERY_INSERT = "INSERT INTO alumno (matricula, nombreCompleto, apellidoPaterno, apellidoMaterno, fecNacimiento, telefono, grado, idCarrera, estatus, fecRegistro, fecActualizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate(), sysdate())";
 	
-	private static final String QUERY_SELECT_ALUMNO = "SELECT A.MATRICULA, A.NOMBRECOMPLETO, A.APELLIDOPATERNO, A.APELLIDOMATERNO, A.FECNACIMIENTO, A.TELEFONO, A.GRADO, C.NOMBRECARRERA, A.ESTATUS FROM ALUMNO AS A INNER JOIN CARRERA AS C ON A.IDCARRERA = C.IDCARRERA WHERE A.MATRICULA = ? ";
+	private static final String QUERY_SELECT_ALUMNO = "SELECT A.MATRICULA, A.NOMBRECOMPLETO, A.APELLIDOPATERNO, A.APELLIDOMATERNO, A.FECNACIMIENTO, A.TELEFONO, A.GRADO, A.ESTATUS, C.IDCARRERA, C.NOMBRECARRERA FROM ALUMNO AS A INNER JOIN CARRERA AS C ON A.IDCARRERA = C.IDCARRERA WHERE A.MATRICULA = ? ";
+	
+	private static final String QUERY_SELECT_ALUMNOS = "SELECT A.MATRICULA, A.NOMBRECOMPLETO, A.APELLIDOPATERNO, A.APELLIDOMATERNO, A.FECNACIMIENTO, A.TELEFONO, A.GRADO, A.ESTATUS, C.IDCARRERA, C.NOMBRECARRERA FROM ALUMNO AS A INNER JOIN CARRERA AS C ON A.IDCARRERA = C.IDCARRERA WHERE A.GRADO = ? AND C.IDCARRERA = ?";
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -66,6 +68,20 @@ public class AdministradorDAO implements IAdministradorDAO {
 		}
 		
 		return alumno;
+	}
+
+	@Override
+	public List<BeanAlumno> obtenerAlumnos(BeanAlumno beanAlumno) {
+		List<BeanAlumno> listaAlumnos = new ArrayList<>();
+		
+		Object[] parametros = {
+				beanAlumno.getGrado(),
+				beanAlumno.getBeanCarrera().getIdCarrera()
+		};
+		
+		listaAlumnos = jdbcTemplate.query(QUERY_SELECT_ALUMNOS, parametros, new AlumnoMapper());
+		
+		return listaAlumnos;
 	}
 
 }
