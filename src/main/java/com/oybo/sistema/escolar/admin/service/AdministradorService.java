@@ -1,5 +1,8 @@
 package com.oybo.sistema.escolar.admin.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,13 @@ public class AdministradorService implements IAdministradorService{
 		respuesta = adminDAO.registroAlumno(beanAlumno);
 		
 		return respuesta;
+	}
+
+	@Override
+	public BeanAlumno obtenerAlumno(BeanAlumno beanAlumno) {
+		BeanAlumno alumno = new BeanAlumno();
+		alumno = adminDAO.obtenerAlumno(beanAlumno);
+		return alumno;
 	}
 
 }

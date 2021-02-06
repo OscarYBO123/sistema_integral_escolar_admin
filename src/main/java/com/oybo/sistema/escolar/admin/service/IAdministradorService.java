@@ -4,4 +4,6 @@ import com.oybo.sistema.escolar.admin.bean.BeanAlumno;
 
 public interface IAdministradorService {
 	boolean registroAlumno(BeanAlumno beanAlumno);
+	
+	BeanAlumno obtenerAlumno(BeanAlumno beanAlumno);
 }
