@@ -19,7 +19,7 @@ import com.oybo.sistema.escolar.admin.bean.BeanAlumno;
 @Repository
 public class AdministradorDAO implements IAdministradorDAO {
 
-	private static final String QUERY_INSERT = "INSERT INTO alumno (matricula, nombreCompleto, apellidoPaterno, apellidoMaterno, fecNacimiento, grado, idCarrera, estatus, fecRegistro, fecActualizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, sysdate(), sysdate())";
+	private static final String QUERY_INSERT = "INSERT INTO alumno (matricula, nombreCompleto, apellidoPaterno, apellidoMaterno, fecNacimiento, telefono, grado, idCarrera, estatus, fecRegistro, fecActualizacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate(), sysdate())";
 	
 	private static final String QUERY_SELECT_ALUMNO = "SELECT A.MATRICULA, A.NOMBRECOMPLETO, A.APELLIDOPATERNO, A.APELLIDOMATERNO, A.FECNACIMIENTO, A.TELEFONO, A.GRADO, C.NOMBRECARRERA, A.ESTATUS FROM ALUMNO AS A INNER JOIN CARRERA AS C ON A.IDCARRERA = C.IDCARRERA WHERE A.MATRICULA = ? ";
 	
